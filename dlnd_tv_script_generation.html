@@ -12914,7 +12914,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12953,7 +12953,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_tensors</span><span class="p">(</span><span class="n">loaded_graph</span><span class="p">):</span>
@@ -13009,7 +13009,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">int_to_vocab</span><span class="p">):</span>
@@ -13069,7 +13069,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen_length</span> <span class="o">=</span> <span class="mi">200</span>
@@ -13104,7 +13104,9 @@ Model Trained and Saved
             <span class="p">[</span><span class="n">probs</span><span class="p">,</span> <span class="n">final_state</span><span class="p">],</span>
             <span class="p">{</span><span class="n">input_text</span><span class="p">:</span> <span class="n">dyn_input</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">prev_state</span><span class="p">})</span>
         
-        <span class="n">pred_word</span> <span class="o">=</span> <span class="n">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">[</span><span class="n">dyn_seq_length</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">int_to_vocab</span><span class="p">)</span>
+        <span class="c1">#pred_word = pick_word(probabilities[dyn_seq_length-1], int_to_vocab)</span>
+        <span class="n">pred_word</span> <span class="o">=</span> <span class="n">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">dyn_seq_length</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">int_to_vocab</span><span class="p">)</span>
+        
         <span class="n">gen_sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_word</span><span class="p">)</span>
     
     <span class="c1"># Remove tokens</span>
@@ -13131,34 +13133,21 @@ Model Trained and Saved
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./save
+moe_szyslak: another duff, homer?
+homer_simpson: nah, it&#39;s friday night moe. i wanna try something special.
+moe_szyslak: uh, sure, sure.
+moe_szyslak: uh, hello. lisa. oh...
+homer_simpson: oh guys, it was horrible. i saw a sesame street about it! kermit was wearing his trench coat and everything!
+homer_simpson: wait, the frog in the pickle.
+lisa_simpson: can you keep a crowd.
+lisa_simpson: chief wiggum, can you drive?
+homer_simpson: sorry, fellas. there&#39;s a movement i have to join. i&#39;ve learned there&#39;s something more important than drinking: eating up.
+kent_brockman:...... so marge says i can&#39;t stand to you in private?
+homer_simpson: can i try it?
+moe_szyslak: eh, gee, i was gonna say a night with joey heatherton. but an ironed shirt... damn! that&#39;s tempting.
+homer_simpson:(to self, in awe) we&#39;re goin&#39; back to make things over a cow college!
+lenny_leonard: and you&#39;re here to make my
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-21-1833de52545f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
-<span class="ansi-green-fg">     31</span>             {input_text: dyn_input, initial_state: prev_state})
-<span class="ansi-green-fg">     32</span> 
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 33</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>pred_word <span class="ansi-yellow-intense-fg ansi-bold">=</span> pick_word<span class="ansi-yellow-intense-fg ansi-bold">(</span>probabilities<span class="ansi-yellow-intense-fg ansi-bold">[</span>dyn_seq_length<span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> int_to_vocab<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     34</span>         gen_sentences<span class="ansi-yellow-intense-fg ansi-bold">.</span>append<span class="ansi-yellow-intense-fg ansi-bold">(</span>pred_word<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">     35</span> 
-
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-20-7b4dbdd4b3c6&gt;</span> in <span class="ansi-cyan-fg">pick_word</span><span class="ansi-blue-intense-fg ansi-bold">(probabilities, int_to_vocab)</span>
-<span class="ansi-green-fg">     11</span>                             size <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>            <span class="ansi-red-intense-fg ansi-bold"># Output shape</span>
-<span class="ansi-green-fg">     12</span>                             replace <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">,</span>        <span class="ansi-red-intense-fg ansi-bold"># Whether the sample is with or without replacement</span>
-<span class="ansi-green-intense-fg ansi-bold">---&gt; 13</span><span class="ansi-yellow-intense-fg ansi-bold">                             p = probabilities )     # The probabilities associated with each entry in a
-</span><span class="ansi-green-fg">     14</span> 
-<span class="ansi-green-fg">     15</span>     predicted_word <span class="ansi-yellow-intense-fg ansi-bold">=</span> int_to_vocab<span class="ansi-yellow-intense-fg ansi-bold">[</span>idx<span class="ansi-yellow-intense-fg ansi-bold">]</span>
-
-<span class="ansi-green-intense-fg ansi-bold">mtrand.pyx</span> in <span class="ansi-cyan-fg">mtrand.RandomState.choice</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
-
-<span class="ansi-red-intense-fg ansi-bold">ValueError</span>: object too deep for desired array</pre>
 </div>
 </div>
 
